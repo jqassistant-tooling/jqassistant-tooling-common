@@ -28,6 +28,13 @@
         </developer>
     </developers>
 
+    <scm>
+        <connection>scm:git:git@github.com:jqassistant-contrib/jqassistant-contrib-common.git</connection>
+        <developerConnection>scm:git:git@github.com:jqassistant-contrib/jqassistant-contrib-common.git</developerConnection>
+        <url>https://github.com/jqassistant-contrib/jqassistant-contrib-common</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <licenses>
         <license>
             <name>GNU General Public License, v3</name>
@@ -80,12 +87,12 @@
                         <dependency>
                             <groupId>org.jruby</groupId>
                             <artifactId>jruby-core</artifactId>
-                            <version>9.1.10.0</version>
+                            <version>1.7.27</version>
                         </dependency>
                         <dependency>
                             <groupId>org.jruby</groupId>
                             <artifactId>jruby-stdlib</artifactId>
-                            <version>9.1.10.0</version>
+                            <version>1.7.27</version>
                         </dependency>
                     </dependencies>
                 </plugin>
