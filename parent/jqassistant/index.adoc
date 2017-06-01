@@ -1,0 +1,6 @@
+= jQAssistant Contrib Parent
+
+This module provides the parent pom.xml for jQAssistant contribution projects.
+It contains a configuration for jQAssistant for verifying common constraints.
+
+

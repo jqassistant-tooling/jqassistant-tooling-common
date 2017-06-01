@@ -1,0 +1,5 @@
+= jQAssistant Contrib Rules
+
+This module contains the rules for jQAssistant contribution projects
+
+
