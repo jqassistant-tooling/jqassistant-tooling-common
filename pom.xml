@@ -80,18 +80,40 @@
                         <dependency>
                             <groupId>org.jruby</groupId>
                             <artifactId>jruby-core</artifactId>
-                            <version>9.1.8.0</version>
+                            <version>9.1.10.0</version>
                         </dependency>
                         <dependency>
                             <groupId>org.jruby</groupId>
                             <artifactId>jruby-stdlib</artifactId>
-                            <version>9.1.8.0</version>
+                            <version>9.1.10.0</version>
                         </dependency>
                     </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>2.7</version>
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>com.buschmais.jqassistant</groupId>
+                <artifactId>jqassistant-maven-plugin</artifactId>
+                <version>${com.buschmais.jqassistant.version}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
 
     <profiles>
         <profile>
