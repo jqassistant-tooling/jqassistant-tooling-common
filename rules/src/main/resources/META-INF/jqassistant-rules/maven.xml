@@ -2,6 +2,7 @@
 
     <group id="jqassistant-contrib-maven:Default">
         <includeConstraint refId="jqassistant-contrib-maven:GroupId"/>
+        <includeConstraint refId="jqassistant-contrib-maven:ParentProjectMustDefineUrl"/>
         <includeConstraint refId="jqassistant-contrib-maven:ParentProjectMustDefineDeveloper"/>
         <includeConstraint refId="jqassistant-contrib-maven:MavenModulesMustUseParentGroupId"/>
     </group>
@@ -32,6 +33,20 @@
                 parent
         ]]></cypher>
     </concept>
+
+    <constraint id="jqassistant-contrib-maven:ParentProjectMustDefineUrl">
+        <requiresConcept refId="jqassistant-contrib-maven:ParentProject" />
+        <description>The project URL must be defined in the parent pom.xml of a contribution project.</description>
+        <cypher><![CDATA[
+            MATCH
+              (parent:Parent:Maven:Project)-[:HAS_MODEL]->(pom:Maven:Pom:Xml),
+              (pom)-[:HAS_ROOT_ELEMENT]->(root:Xml:Element)
+            WHERE NOT
+              (root)-[:HAS_ELEMENT]->(:Xml:Element{name:"url"})
+            RETURN
+              parent
+        ]]></cypher>
+    </constraint>
 
     <constraint id="jqassistant-contrib-maven:ParentProjectMustDefineDeveloper">
         <requiresConcept refId="jqassistant-contrib-maven:ParentProject" />
