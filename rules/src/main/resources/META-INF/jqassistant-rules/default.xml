@@ -3,6 +3,7 @@
     <group id="jqassistant-contrib:Default">
         <includeGroup refId="jqassistant-contrib-maven:Default"/>
         <includeGroup refId="jqassistant-contrib-package:Default"/>
+        <includeGroup refId="jqassistant-contrib-test:Default"/>
     </group>
 
 </jqa:jqassistant-rules>

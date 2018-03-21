@@ -4,5 +4,6 @@
         <resource>default.xml</resource>
         <resource>maven.xml</resource>
         <resource>package.xml</resource>
+        <resource>test.xml</resource>
     </rules>
 </v1:jqassistant-plugin>
