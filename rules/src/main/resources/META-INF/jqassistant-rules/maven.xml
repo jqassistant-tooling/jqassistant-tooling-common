@@ -19,7 +19,7 @@
         ]]></cypher>
     </constraint>
 
-    <concept id="jqassistant-contrib-maven:ParentProject">
+    <concept id="jqassistant-contrib-maven:ParentProject" severity="info">
         <description>Labels all Maven projects which declare "org.jqassistant.contrib.common:parent" as parent module with "Parent".</description>
         <cypher><![CDATA[
             MATCH

@@ -4,8 +4,7 @@
         <includeConstraint refId="jqassistant-contrib-test:IntegrationTestClassSuffix"/>
     </group>
 
-
-    <concept id="jqassistant-contrib-test:IT">
+    <concept id="jqassistant-contrib-test:IT" severity="info">
         <requiresConcept refId="junit4:TestClass"/>
         <description>Adds a label "IntegrationTest" to all non-abstract classes deriving from AbstractPluginIT or AbstractJavaPluginIT.</description>
         <cypher><![CDATA[

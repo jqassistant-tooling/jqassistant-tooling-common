@@ -14,6 +14,7 @@
 
     <properties>
         <com.buschmais.jqassistant.version>1.3.0</com.buschmais.jqassistant.version>
+        <org.jruby.version>1.7.27</org.jruby.version>
         <maven.surefire.version>2.21.0</maven.surefire.version>
     </properties>
 
@@ -89,12 +90,12 @@
                         <dependency>
                             <groupId>org.jruby</groupId>
                             <artifactId>jruby-core</artifactId>
-                            <version>1.7.27</version>
+                            <version>${org.jruby.version}</version>
                         </dependency>
                         <dependency>
                             <groupId>org.jruby</groupId>
                             <artifactId>jruby-stdlib</artifactId>
-                            <version>1.7.27</version>
+                            <version>${org.jruby.version}</version>
                         </dependency>
                     </dependencies>
                 </plugin>
