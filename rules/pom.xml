@@ -19,6 +19,7 @@
                 <groupId>com.buschmais.jqassistant</groupId>
                 <artifactId>jqassistant-maven-plugin</artifactId>
                 <configuration>
+                    <storeLifecycle>MODULE</storeLifecycle>
                     <rulesDirectories>
                         <rulesDirectory>${project.build.outputDirectory}/META-INF/jqassistant-rules</rulesDirectory>
                     </rulesDirectories>
