@@ -38,8 +38,6 @@
                     <groups>
                         <group>jqassistant-contrib:Default</group>
                     </groups>
-                    <warnOnSeverity>MINOR</warnOnSeverity>
-                    <failOnSeverity>MAJOR</failOnSeverity>
                 </configuration>
                 <dependencies>
                     <dependency>
