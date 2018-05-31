@@ -38,8 +38,6 @@
                     <groups>
                         <group>jqassistant-contrib:Default</group>
                     </groups>
-                    <warnOnSeverity>MINOR</warnOnSeverity>
-                    <failOnSeverity>MAJOR</failOnSeverity>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -78,6 +76,13 @@
                 <groupId>com.buschmais.jqassistant.neo4jserver</groupId>
                 <artifactId>neo4jv2</artifactId>
                 <version>${com.buschmais.jqassistant.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.buschmais.jqassistant.core</groupId>
+                <artifactId>store</artifactId>
+                <version>${com.buschmais.jqassistant.version}</version>
+                <type>test-jar</type>
                 <scope>test</scope>
             </dependency>
             <dependency>

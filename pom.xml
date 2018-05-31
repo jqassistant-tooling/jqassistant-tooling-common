@@ -90,11 +90,18 @@
                     <version>${com.buschmais.jqassistant.version}</version>
                     <executions>
                         <execution>
-                            <id>default</id>
+                            <id>default-cli</id>
                             <goals>
                                 <goal>scan</goal>
                                 <goal>analyze</goal>
                             </goals>
+                            <configuration>
+                                <warnOnSeverity>MINOR</warnOnSeverity>
+                                <failOnSeverity>MAJOR</failOnSeverity>
+                                <rule>
+                                    <defaultConceptSeverity>INFO</defaultConceptSeverity>
+                                </rule>
+                            </configuration>
                         </execution>
                     </executions>
                 </plugin>
@@ -106,7 +113,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.0.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
