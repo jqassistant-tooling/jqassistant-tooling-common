@@ -75,7 +75,7 @@
                 <groupId>com.buschmais.jqassistant.neo4jserver</groupId>
                 <artifactId>neo4jv3</artifactId>
                 <version>${com.buschmais.jqassistant.version}</version>
-                <scope>test</scope>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>com.buschmais.jqassistant.core</groupId>
@@ -107,25 +107,16 @@
             </dependency>
             <!-- General test dependencies -->
             <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
                 <version>${org.junit.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
                 <version>${org.mockito.version}</version>
                 <scope>test</scope>
-                <!--
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.hamcrest</groupId>
-                        <artifactId>hamcrest-core</artifactId>
-                    </exclusion>
-                </exclusions>
-                -->
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>

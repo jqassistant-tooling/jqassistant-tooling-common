@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.jqassistant.contrib.common</groupId>
@@ -15,11 +16,11 @@
         <com.buschmais.jqassistant.version>1.7.0-SNAPSHOT</com.buschmais.jqassistant.version>
         <com.buschmais.xo.version>0.12.0</com.buschmais.xo.version>
         <org.hamcrest.version>2.0.0.0</org.hamcrest.version>
-        <org.junit.version>5.5.0-M1</org.junit.version>
+        <org.junit.version>5.5.1</org.junit.version>
         <org.mockito.version>2.24.0</org.mockito.version>
         <org.assertj.version>3.11.1</org.assertj.version>
         <org.slf4j.version>1.7.25</org.slf4j.version>
-        <maven.surefire.version>2.21.0</maven.surefire.version>
+        <maven.surefire.version>2.22.2</maven.surefire.version>
     </properties>
 
     <organization>
@@ -153,11 +154,19 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
                     <version>${maven.surefire.version}</version>
-                    <configuration>
-                        <includes>
-                            <include>**/*IT.java</include>
-                        </includes>
-                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                            <configuration>
+                                <includes>
+                                    <include>**/*IT.java</include>
+                                </includes>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
