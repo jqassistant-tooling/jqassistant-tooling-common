@@ -11,11 +11,11 @@
         <description>The groupId for jQAssistant contrib Maven projects must follow the pattern 'org.jqassistant.contrib.&lt;project&gt;'.</description>
         <cypher><![CDATA[
             MATCH
-                (project:Maven:Project)-[:CREATES]->(:Artifact)
+              (project:Maven:Project)-[:CREATES]->(:Artifact)
             WHERE NOT
-                project.groupId =~ "org\\.jqassistant\\.contrib\\..*"
+              project.groupId =~ "org\\.jqassistant\\.contrib\\..*"
             RETURN
-                project as InvalidProject
+              project as InvalidProject
         ]]></cypher>
     </constraint>
 
@@ -23,14 +23,14 @@
         <description>Labels all Maven projects which declare "org.jqassistant.contrib.common:parent" as parent module with "Parent".</description>
         <cypher><![CDATA[
             MATCH
-                (parent:Maven:Project)-[:HAS_PARENT]->(contribParent:Maven:Project)
+              (parent:Maven:Project)-[:HAS_PARENT]->(contribParent:Maven:Project)
             WHERE
-                contribParent.groupId="org.jqassistant.contrib.common"
-                and contribParent.artifactId="parent"
+              contribParent.groupId="org.jqassistant.contrib.common"
+              and contribParent.artifactId="parent"
             SET
-                parent:Parent
+              parent:Parent
             RETURN
-                parent
+              parent
         ]]></cypher>
     </concept>
 
@@ -53,11 +53,11 @@
         <description>At least one developer must be specified in the "developers" section of the parent pom.xml of a contribution project.</description>
         <cypher><![CDATA[
             MATCH
-                (parent:Maven:Project:Parent)-[:HAS_MODEL]->(pom)
+              (parent:Maven:Project:Parent)-[:HAS_MODEL]->(pom)
             WHERE NOT
-                (pom)-[:HAS_DEVELOPER]->()
+              (pom)-[:HAS_DEVELOPER]->()
             RETURN
-                parent
+              parent
         ]]></cypher>
     </constraint>
 
@@ -66,12 +66,12 @@
         <description>All Maven projects must define the same groupId as the parent of the contribution project.</description>
         <cypher><![CDATA[
             MATCH
-                (parent:Maven:Project:Parent),
-                (module:Maven:Project:Directory)
+              (parent:Maven:Project:Parent),
+              (module:Maven:Project:Directory)
             WHERE NOT
-                (module:Parent or module.groupId = parent.groupId)
+              (module:Parent or module.groupId = parent.groupId)
             RETURN
-                module as InvalidModule, parent as Parent
+              module as InvalidModule, parent as Parent
         ]]></cypher>
     </constraint>
 

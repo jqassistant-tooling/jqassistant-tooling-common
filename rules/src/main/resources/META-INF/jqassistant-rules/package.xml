@@ -9,12 +9,12 @@
         <description>All package names used in a Maven project must start with the groupId.</description>
         <cypher><![CDATA[
             MATCH
-                (project:Maven:Project)-[:CREATES]->(artifact:Artifact),
-                (artifact)-[:CONTAINS]->(invalidPackage:Package)-[:CONTAINS]->(type:Type)
+              (project:Maven:Project)-[:CREATES]->(artifact:Artifact),
+              (artifact)-[:CONTAINS]->(invalidPackage:Package)-[:CONTAINS]->(type:Type)
             WHERE NOT
-                invalidPackage.fqn starts with project.groupId
+              invalidPackage.fqn starts with project.groupId
             RETURN
-                invalidPackage as InvalidPackage, project.groupId as GroupId, project.artifactId as ArtifactId, count(type) as TypesInPackage
+              invalidPackage as InvalidPackage, project.groupId as GroupId, project.artifactId as ArtifactId, count(type) as TypesInPackage
         ]]></cypher>
     </constraint>
 

@@ -5,17 +5,17 @@
     </group>
 
     <concept id="jqassistant-contrib-test:IT" severity="info">
-        <requiresConcept refId="junit4:TestClass"/>
+        <requiresConcept refId="junit5:TestClass"/>
         <description>Adds a label "IntegrationTest" to all non-abstract classes deriving from AbstractPluginIT or AbstractJavaPluginIT.</description>
         <cypher><![CDATA[
             MATCH
-                (it:Test:Class)-[:EXTENDS*]->(abstractBaseClass:Type)
+              (it:Test:Class)-[:EXTENDS*]->(abstractBaseClass:Type)
             WHERE
-                NOT exists(it.abstract)
-                AND abstractBaseClass.fqn in [
-                  "com.buschmais.jqassistant.plugin.common.test.AbstractPluginIT",
-                  "com.buschmais.jqassistant.plugin.java.test.AbstractJavaPluginIT"
-                ]
+              NOT exists(it.abstract)
+              AND abstractBaseClass.fqn in [
+                "com.buschmais.jqassistant.plugin.common.test.AbstractPluginIT",
+                "com.buschmais.jqassistant.plugin.java.test.AbstractJavaPluginIT"
+              ]
             SET
               it:IntegrationTest
             RETURN
@@ -28,11 +28,11 @@
         <description>All integration test classes must have the name suffix "IT" for being executed using the Maven Failsafe Plugin.</description>
         <cypher><![CDATA[
             MATCH
-                (it:IntegrationTest)
+              (it:IntegrationTest)
             WHERE NOT
-                it.name ends with "IT"
+              it.name ends with "IT"
             RETURN
-                it as IntegrationTestWithWrongSuffix
+              it as IntegrationTestWithWrongSuffix
         ]]></cypher>
     </constraint>
 
