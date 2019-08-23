@@ -70,13 +70,7 @@
                 <version>${org.slf4j.version}</version>
                 <scope>provided</scope>
             </dependency>
-            <!-- unit tests -->
-            <dependency>
-                <groupId>com.buschmais.jqassistant.neo4jserver</groupId>
-                <artifactId>neo4jv2</artifactId>
-                <version>${com.buschmais.jqassistant.version}</version>
-                <scope>test</scope>
-            </dependency>
+            <!-- jQA test dependencies -->
             <dependency>
                 <groupId>com.buschmais.jqassistant.neo4jserver</groupId>
                 <artifactId>neo4jv3</artifactId>
@@ -109,6 +103,46 @@
                 <artifactId>java</artifactId>
                 <type>test-jar</type>
                 <version>${com.buschmais.jqassistant.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- General test dependencies -->
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${org.junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${org.mockito.version}</version>
+                <scope>test</scope>
+                <!--
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.hamcrest</groupId>
+                        <artifactId>hamcrest-core</artifactId>
+                    </exclusion>
+                </exclusions>
+                -->
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-junit-jupiter</artifactId>
+                <version>${org.mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>java-hamcrest</artifactId>
+                <version>${org.hamcrest.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${org.assertj.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
