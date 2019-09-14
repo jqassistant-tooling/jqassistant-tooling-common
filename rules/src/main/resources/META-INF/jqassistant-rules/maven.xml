@@ -1,10 +1,7 @@
-<jqa:jqassistant-rules xmlns:jqa="http://www.buschmais.com/jqassistant/core/analysis/rules/schema/v1.0">
+<jqa:jqassistant-rules xmlns:jqa="http://www.buschmais.com/jqassistant/core/rule/schema/v1.4">
 
     <group id="jqassistant-contrib-maven:Default">
-        <includeConstraint refId="jqassistant-contrib-maven:GroupId"/>
-        <includeConstraint refId="jqassistant-contrib-maven:ParentProjectMustDefineUrl"/>
-        <includeConstraint refId="jqassistant-contrib-maven:ParentProjectMustDefineDeveloper"/>
-        <includeConstraint refId="jqassistant-contrib-maven:MavenModulesMustUseParentGroupId"/>
+        <includeConstraint refId="jqassistant-contrib-maven:*"/>
     </group>
 
     <constraint id="jqassistant-contrib-maven:GroupId">
@@ -43,6 +40,19 @@
               (pom)-[:HAS_ROOT_ELEMENT]->(root:Xml:Element)
             WHERE NOT
               (root)-[:HAS_ELEMENT]->(:Xml:Element{name:"url"})
+            RETURN
+              parent
+        ]]></cypher>
+    </constraint>
+
+    <constraint id="jqassistant-contrib-maven:ParentProjectMustDefineScmSection">
+        <requiresConcept refId="jqassistant-contrib-maven:ParentProject" />
+        <description>A SCM section must be specified in the parent pom.xml of a contribution project.</description>
+        <cypher><![CDATA[
+            MATCH
+              (parent:Maven:Project:Parent)-[:HAS_MODEL]->(pom)
+            WHERE NOT
+              (pom)-[:HAS_SCM]->()
             RETURN
               parent
         ]]></cypher>
