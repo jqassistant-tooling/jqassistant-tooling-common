@@ -13,8 +13,8 @@
     <url>https://github.com/jqassistant-contrib/jqassistant-contrib-common</url>
 
     <properties>
-        <com.buschmais.jqassistant.version>1.7.0-SNAPSHOT</com.buschmais.jqassistant.version>
-        <com.buschmais.xo.version>0.12.0</com.buschmais.xo.version>
+        <com.buschmais.jqassistant.version>1.7.0-RC1</com.buschmais.jqassistant.version>
+        <com.buschmais.xo.version>0.13.0</com.buschmais.xo.version>
         <org.hamcrest.version>2.0.0.0</org.hamcrest.version>
         <org.junit.version>5.5.1</org.junit.version>
         <org.mockito.version>2.24.0</org.mockito.version>
