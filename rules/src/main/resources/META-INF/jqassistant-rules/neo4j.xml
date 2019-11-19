@@ -1,0 +1,54 @@
+<jqa:jqassistant-rules xmlns:jqa="http://www.buschmais.com/jqassistant/core/rule/schema/v1.4">
+
+    <group id="neo4j:Default">
+        <includeConstraint refId="neo4j:*"/>
+    </group>
+
+    <concept id="neo4j:LibraryType">
+        <requiresConcept refId="neo4j:UserFunction"/>
+        <requiresConcept refId="neo4j:Procedure"/>
+        <description>Labels all types declaring Neo4j functions or procedures with `Neo4j` and `Library`.</description>
+        <cypher><![CDATA[
+            MATCH
+              (libraryType:Type)-[:DECLARES]->(method:Neo4j:Method)
+            WHERE
+              method:Procedure or method:Function
+            SET
+              libraryType:Neo4j:Library
+            RETURN
+              libraryType
+        ]]></cypher>
+    </concept>
+
+    <concept id="neo4j:UserFunction">
+        <description>Labels all types annotated with "@org.neo4j.procedure.UserFunction" with `Neo4j` and
+            `UserFunction`.
+        </description>
+        <cypher><![CDATA[
+            MATCH
+              (userFunction:Method)-[:ANNOTATED_BY]->()-[:OF_TYPE]->(annotationType:Type)
+            WHERE
+              annotationType.fqn = "org.neo4j.procedure.UserFunction"
+            SET
+              userFunction:Neo4j:UserFunction
+            RETURN
+              userFunction as UserFunction
+        ]]></cypher>
+    </concept>
+
+    <concept id="neo4j:Procedure">
+        <description>Labels all types annotated with "@org.neo4j.procedure.Procedure" with `Neo4j` and `Procedure`.
+        </description>
+        <cypher><![CDATA[
+            MATCH
+              (procedure:Method)-[:ANNOTATED_BY]->()-[:OF_TYPE]->(annotationType:Type)
+            WHERE
+              annotationType.fqn = "org.neo4j.procedure.Procedure"
+            SET
+              procedure:Neo4j:Procedure
+            RETURN
+              procedure as Procedure
+        ]]></cypher>
+    </concept>
+
+</jqa:jqassistant-rules>
