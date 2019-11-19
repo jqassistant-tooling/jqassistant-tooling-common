@@ -1,0 +1,93 @@
+<jqa:jqassistant-rules xmlns:jqa="http://www.buschmais.com/jqassistant/core/rule/schema/v1.4">
+
+    <group id="jqassistant-contrib-plugin:Default">
+        <includeConstraint refId="jqassistant-contrib-plugin:*"/>
+    </group>
+
+    <constraint id="jqassistant-contrib-plugin:Neo4jUserFunctionsMustBeRegistered">
+        <requiresConcept refId="neo4j:UserFunction"/>
+        <requiresConcept refId="jqassistant-contrib-plugin:PluginRegistersUserFunction"/>
+        <description>Types declaring Neo4j user functions must be registered.</description>
+        <cypher><![CDATA[
+            MATCH
+              (type:Type)-[:DECLARES]->(userFunction:UserFunction)
+            WHERE NOT
+              ()-[:REGISTERS]->(type)
+            RETURN
+              type as NonRegisteredType, collect(userFunction) as UserFunctions
+        ]]></cypher>
+    </constraint>
+
+    <constraint id="jqassistant-contrib-plugin:Neo4jProceduresMustBeRegistered">
+        <requiresConcept refId="neo4j:Procedure"/>
+        <requiresConcept refId="jqassistant-contrib-plugin:PluginRegistersProcedure"/>
+        <description>Types declaring Neo4j procedures must be registered.</description>
+        <cypher><![CDATA[
+            MATCH
+              (type:Type)-[:DECLARES]->(procedure:Procedure)
+            WHERE NOT
+              ()-[:REGISTERS]->(type)
+            RETURN
+              type as NonRegisteredType, collect(procedure) as Procedures
+        ]]></cypher>
+    </constraint>
+
+    <concept id="jqassistant-contrib-plugin:PluginDescriptor">
+        <description>Labels jQAssistant plugin descriptor files with `jQAssistant` and `PluginDescriptor`.</description>
+        <cypher><![CDATA[
+            MATCH
+              (artifact:Artifact)-[:CONTAINS]->(pluginDescriptor:Xml:File{fileName:"/META-INF/jqassistant-plugin.xml"})
+            SET
+              pluginDescriptor:jQAssistant:PluginDescriptor
+            RETURN
+              artifact as Artifact, pluginDescriptor as PluginDescriptor
+        ]]></cypher>
+    </concept>
+
+    <concept id="jqassistant-contrib-plugin:PluginRegistersProcedure">
+        <requiresConcept refId="jqassistant-contrib-plugin:PluginDescriptor"/>
+        <description>Creates a `REGISTERS` relation between all procedure class elements of the jQAssistant plugin
+            descriptor to the matching Java type.
+        </description>
+        <cypher><![CDATA[
+            MATCH
+              (pluginDescriptor:jQAssistant:PluginDescriptor),
+              (pluginDescriptor)-[:HAS_ROOT_ELEMENT]-(root:Element),
+              (root)-[:HAS_ELEMENT]->(procedure:Element{name:"procedure"}),
+              (procedure)-[:HAS_ELEMENT]->(class:Element{name:"class"}),
+              (class)-[:HAS_TEXT]->(type)
+            WITH
+              class, type.value as className
+            MATCH
+              (type:Java:Type{fqn:className})
+            MERGE
+               (class)-[:REGISTERS]->(type)
+             RETURN
+               type as RegisteredType
+        ]]></cypher>
+    </concept>
+
+    <concept id="jqassistant-contrib-plugin:PluginRegistersUserFunction">
+        <requiresConcept refId="jqassistant-contrib-plugin:PluginDescriptor"/>
+        <description>Creates a `REGISTERS` relation between all function class elements of the jQAssistant plugin
+            descriptor to the matching Java type.
+        </description>
+        <cypher><![CDATA[
+            MATCH
+              (pluginDescriptor:jQAssistant:PluginDescriptor),
+              (pluginDescriptor)-[:HAS_ROOT_ELEMENT]-(root:Element),
+              (root)-[:HAS_ELEMENT]->(procedure:Element{name:"function"}),
+              (function)-[:HAS_ELEMENT]->(class:Element{name:"class"}),
+              (class)-[:HAS_TEXT]->(type)
+            WITH
+              class, type.value as className
+            MATCH
+              (type:Type{fqn:className})
+            MERGE
+               (class)-[:REGISTERS]->(type)
+             RETURN
+               type as RegisteredType
+        ]]></cypher>
+    </concept>
+
+</jqa:jqassistant-rules>

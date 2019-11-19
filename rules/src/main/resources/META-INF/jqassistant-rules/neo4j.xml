@@ -4,22 +4,6 @@
         <includeConstraint refId="neo4j:*"/>
     </group>
 
-    <concept id="neo4j:LibraryType">
-        <requiresConcept refId="neo4j:UserFunction"/>
-        <requiresConcept refId="neo4j:Procedure"/>
-        <description>Labels all types declaring Neo4j functions or procedures with `Neo4j` and `Library`.</description>
-        <cypher><![CDATA[
-            MATCH
-              (libraryType:Type)-[:DECLARES]->(method:Neo4j:Method)
-            WHERE
-              method:Procedure or method:Function
-            SET
-              libraryType:Neo4j:Library
-            RETURN
-              libraryType
-        ]]></cypher>
-    </concept>
-
     <concept id="neo4j:UserFunction">
         <description>Labels all types annotated with "@org.neo4j.procedure.UserFunction" with `Neo4j` and
             `UserFunction`.

@@ -5,5 +5,7 @@
         <resource>maven.xml</resource>
         <resource>package.xml</resource>
         <resource>test.xml</resource>
+        <resource>plugin.xml</resource>
+        <resource>neo4j.xml</resource>
     </rules>
 </v1:jqassistant-plugin>

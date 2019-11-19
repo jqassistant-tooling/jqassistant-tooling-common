@@ -44,6 +44,9 @@
                 <groupId>com.buschmais.jqassistant</groupId>
                 <artifactId>jqassistant-maven-plugin</artifactId>
                 <configuration>
+                    <scanProperties>
+                        <xml.file.include>/META-INF/jqassistant-plugin.xml</xml.file.include>
+                    </scanProperties>
                     <groups>
                         <group>jqassistant-contrib:Default</group>
                     </groups>
