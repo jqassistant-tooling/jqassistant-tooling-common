@@ -248,6 +248,12 @@
         </profile>
         <profile>
             <id>sonar</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
             <properties>
                 <sonar.host.url>https://sonarcloud.io</sonar.host.url>
                 <sonar.organization>jqassistant-contrib</sonar.organization>
