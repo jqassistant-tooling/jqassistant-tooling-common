@@ -4,7 +4,7 @@
 
     <groupId>org.jqassistant.contrib.common</groupId>
     <artifactId>common-parent</artifactId>
-    <version>1.8.0</version>
+    <version>1.8.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>jQAssistant Contrib Common Parent</name>
@@ -259,6 +259,7 @@
                 <sonar.organization>jqassistant-contrib</sonar.organization>
                 <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
                 <sonar.login>${env.SONARCLOUD_LOGIN}</sonar.login>
+                <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
             </properties>
             <build>
                 <plugins>
