@@ -31,6 +31,19 @@
         ]]></cypher>
     </concept>
 
+    <constraint id="jqassistant-contrib-maven:ParentProjectMustDefineLicense">
+        <requiresConcept refId="jqassistant-contrib-maven:ParentProject" />
+        <description>The license of the project must be defined in the parent pom.xml of a contribution project.</description>
+        <cypher><![CDATA[
+            MATCH
+              (parent:Project:Parent)
+            WHERE NOT
+              (parent)-[:HAS_MODEL]->(:Pom)-[:USES_LICENSE]->(:License)
+            RETURN
+              parent
+        ]]></cypher>
+    </constraint>
+
     <constraint id="jqassistant-contrib-maven:ParentProjectMustDefineUrl">
         <requiresConcept refId="jqassistant-contrib-maven:ParentProject" />
         <description>The project URL must be defined in the parent pom.xml of a contribution project.</description>
