@@ -13,7 +13,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <com.buschmais.jqassistant.version>1.10.0-ALPHA1</com.buschmais.jqassistant.version>
+        <com.buschmais.jqassistant.version>1.10.0-RC1</com.buschmais.jqassistant.version>
         <com.buschmais.xo.version>1.2.0</com.buschmais.xo.version>
         <org.hamcrest.version>2.0.0.0</org.hamcrest.version>
         <org.junit.version>5.5.1</org.junit.version>
