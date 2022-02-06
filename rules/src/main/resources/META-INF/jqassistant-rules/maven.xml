@@ -53,6 +53,8 @@
               (parent:Maven:Project:Parent)-[:HAS_MODEL]->(pom)
             OPTIONAL MATCH
               (pom)-[:HAS_SCM]->(scm)
+            WITH
+              parent, scm
             WHERE
               scm is null
               or not (
