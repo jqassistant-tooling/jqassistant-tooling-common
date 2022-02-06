@@ -47,12 +47,18 @@
 
     <constraint id="jqassistant-contrib-maven:ParentProjectMustDefineScmSection">
         <requiresConcept refId="jqassistant-contrib-maven:ParentProject" />
-        <description>A SCM section must be specified in the parent pom.xml of a contribution project.</description>
+        <description>A SCM section having both connection and developerConnection set to "scm:git:https://github.com/jqassistant-contrib/repo-name" must be specified in the parent pom.xml of a contribution project.</description>
         <cypher><![CDATA[
             MATCH
               (parent:Maven:Project:Parent)-[:HAS_MODEL]->(pom)
-            WHERE NOT
-              (pom)-[:HAS_SCM]->()
+            OPTIONAL MATCH
+              (pom)-[:HAS_SCM]->(scm)
+            WHERE
+              scm is null
+              or not (
+                scm.connection starts with "scm:git:https://github.com/jqassistant-contrib/"
+                and scm.developerConnection starts with "scm:git:https://github.com/jqassistant-contrib/"
+              )
             RETURN
               parent
         ]]></cypher>
