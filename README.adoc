@@ -11,10 +11,11 @@ This project provides the parent pom.xml for jQAssistant contribution projects:
 </parent>
 ----
 
-It contains a configuration for jQAssistant to verifying common constraints related to:
+It contains a configuration for jQAssistant to verify common constraints related to:
 
 * Maven and Java package naming conventions
 * Test naming conventions
 * Plugin structure
 * ...
 
+The rules are located in the folder link:rules/src/main/resources/META-INF/jqassistant-rules/[]
