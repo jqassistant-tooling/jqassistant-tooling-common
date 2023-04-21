@@ -90,10 +90,45 @@
         <dependencies>
             <dependency>
                 <groupId>com.buschmais.jqassistant</groupId>
-                <artifactId>jqa-distribution-specification</artifactId>
-                <version>${com.buschmais.jqassistant.version}</version>
+                <artifactId>bom</artifactId>
                 <type>pom</type>
                 <scope>import</scope>
+                <version>${com.buschmais.jqassistant.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.buschmais.jqassistant.core</groupId>
+                <artifactId>analysis</artifactId>
+                <version>${com.buschmais.jqassistant.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.buschmais.jqassistant.core</groupId>
+                <artifactId>scanner</artifactId>
+                <version>${com.buschmais.jqassistant.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.buschmais.jqassistant.core</groupId>
+                <artifactId>rule</artifactId>
+                <version>${com.buschmais.jqassistant.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.buschmais.jqassistant.core</groupId>
+                <artifactId>runtime</artifactId>
+                <version>${com.buschmais.jqassistant.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.buschmais.jqassistant.core</groupId>
+                <artifactId>report</artifactId>
+                <version>${com.buschmais.jqassistant.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.buschmais.jqassistant.core</groupId>
+                <artifactId>shared</artifactId>
+                <version>${com.buschmais.jqassistant.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.buschmais.jqassistant.core</groupId>
+                <artifactId>schemata</artifactId>
+                <version>${com.buschmais.jqassistant.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.buschmais.xo</groupId>
