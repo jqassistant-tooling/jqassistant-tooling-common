@@ -2,18 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.jqassistant.contrib.common</groupId>
+    <groupId>org.jqassistant.tooling.common</groupId>
     <artifactId>common-parent</artifactId>
-    <version>2.1.0-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>jQAssistant Contrib Common Parent</name>
+    <name>jQAssistant Tooling Common Parent</name>
     <description>Parent POM for jQAssistant common modules.</description>
-    <url>https://github.com/jqassistant-contrib/jqassistant-contrib-common</url>
+    <url>https://github.com/jqassistant-tooling/jqassistant-tooling-common</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <com.buschmais.jqassistant.version>2.0.0</com.buschmais.jqassistant.version>
+        <com.buschmais.jqassistant.version>2.0.3</com.buschmais.jqassistant.version>
         <com.buschmais.xo.version>2.1.1</com.buschmais.xo.version>
         <org.hamcrest.version>2.0.0.0</org.hamcrest.version>
         <org.junit.version>5.8.2</org.junit.version>
@@ -37,10 +37,10 @@
     </developers>
 
     <scm>
-        <connection>scm:git:https://github.com/jqassistant-contrib/jqassistant-contrib-common.git</connection>
-        <developerConnection>scm:git:https://github.com/jqassistant-contrib/jqassistant-contrib-common.git
+        <connection>scm:git:https://github.com/jqassistant-tooling/jqassistant-tooling-common.git</connection>
+        <developerConnection>scm:git:https://github.com/jqassistant-tooling/jqassistant-tooling-common.git
         </developerConnection>
-        <url>https://github.com/jqassistant-contrib/jqassistant-contrib-common</url>
+        <url>https://github.com/jqassistant-tooling/jqassistant-tooling-common</url>
         <tag>1.7.0</tag>
     </scm>
 
@@ -254,7 +254,7 @@
             </activation>
             <properties>
                 <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-                <sonar.organization>jqassistant-contrib</sonar.organization>
+                <sonar.organization>jqassistant-tooling</sonar.organization>
                 <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
                 <sonar.login>${env.SONARCLOUD_LOGIN}</sonar.login>
                 <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
