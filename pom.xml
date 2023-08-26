@@ -13,13 +13,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <com.buschmais.jqassistant.version>2.0.3</com.buschmais.jqassistant.version>
-        <com.buschmais.xo.version>2.1.1</com.buschmais.xo.version>
-        <org.hamcrest.version>2.0.0.0</org.hamcrest.version>
-        <org.junit.version>5.8.2</org.junit.version>
-        <org.mockito.version>2.24.0</org.mockito.version>
-        <org.assertj.version>3.21.0</org.assertj.version>
-        <org.slf4j.version>1.7.25</org.slf4j.version>
+        <com.buschmais.jqassistant.version>2.0.7</com.buschmais.jqassistant.version>
         <maven.surefire.version>3.0.0</maven.surefire.version>
     </properties>
 
