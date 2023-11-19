@@ -134,6 +134,7 @@
                         <autoVersionSubmodules>true</autoVersionSubmodules>
                         <tagNameFormat>@{version}</tagNameFormat>
                         <goals>deploy</goals>
+                        <releaseProfiles>release</releaseProfiles>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -250,12 +251,6 @@
         </profile>
         <profile>
             <id>release</id>
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
             <build>
                 <plugins>
                     <plugin>
