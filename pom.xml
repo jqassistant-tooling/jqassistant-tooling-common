@@ -13,7 +13,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <com.buschmais.jqassistant.version>2.0.9</com.buschmais.jqassistant.version>
+        <com.buschmais.jqassistant.version>2.3.0</com.buschmais.jqassistant.version>
         <maven.surefire.version>3.0.0</maven.surefire.version>
     </properties>
 
