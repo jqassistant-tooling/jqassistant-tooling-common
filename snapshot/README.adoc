@@ -1,0 +1,20 @@
+= jQAssistant Tooling Common
+
+This project provides the parent pom.xml for jQAssistant tooling projects:
+
+[source,xml]
+----
+<parent>
+    <groupId>org.jqassistant.tooling.common</groupId>
+    <artifactId>parent</artifactId>
+    <version>${tooling.parent.version}</version>
+</parent>
+----
+
+It contains a configuration for jQAssistant to verify common constraints related to:
+
+* Maven and Java package naming conventions
+* Test naming conventions
+* ...
+
+The rules are located in the folder link:rules/src/main/resources/META-INF/jqassistant-rules/[]

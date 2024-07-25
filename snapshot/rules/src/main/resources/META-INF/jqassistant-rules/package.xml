@@ -1,0 +1,21 @@
+<jqa:jqassistant-rules xmlns:jqa="http://www.buschmais.com/jqassistant/core/rule/schema/v1.4">
+
+    <group id="jqassistant-tooling-package:Default">
+        <includeConstraint refId="jqassistant-tooling-package:*"/>
+    </group>
+
+    <constraint id="jqassistant-tooling-package:PackagesMustHaveGroupIdPrefix">
+        <requiresConcept refId="jqassistant-tooling-maven:ParentProject"/>
+        <description>All package names used in a Maven project must start with the groupId.</description>
+        <cypher><![CDATA[
+            MATCH
+              (project:Maven:Project)-[:CREATES]->(artifact:Artifact),
+              (artifact)-[:CONTAINS]->(invalidPackage:Package)-[:CONTAINS]->(type:Type)
+            WHERE NOT
+              invalidPackage.fqn starts with project.groupId
+            RETURN
+              invalidPackage as InvalidPackage, project.groupId as GroupId, project.artifactId as ArtifactId, count(type) as TypesInPackage
+        ]]></cypher>
+    </constraint>
+
+</jqa:jqassistant-rules>

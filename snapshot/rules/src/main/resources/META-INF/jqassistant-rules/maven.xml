@@ -1,0 +1,96 @@
+<jqa:jqassistant-rules xmlns:jqa="http://www.buschmais.com/jqassistant/core/rule/schema/v1.4">
+
+    <group id="jqassistant-tooling-maven:Default">
+        <includeConstraint refId="jqassistant-tooling-maven:*"/>
+    </group>
+
+    <constraint id="jqassistant-tooling-maven:GroupId">
+        <description>The groupId for jQAssistant tooling Maven projects must follow the pattern 'org.jqassistant.tooling.&lt;project&gt;'.</description>
+        <cypher><![CDATA[
+            MATCH
+              (project:Maven:Project)-[:CREATES]->(:Artifact)
+            WHERE NOT
+              project.groupId =~ "org\\.jqassistant\\.tooling\\..*"
+            RETURN
+              project as InvalidProject
+        ]]></cypher>
+    </constraint>
+
+    <concept id="jqassistant-tooling-maven:ParentProject" severity="info">
+        <description>Labels all Maven projects which declare "org.jqassistant.tooling.common:parent" as parent module with "Parent".</description>
+        <cypher><![CDATA[
+            MATCH
+              (parent:Maven:Project)-[:HAS_PARENT]->(toolingParent:Maven:Project)
+            WHERE
+              toolingParent.groupId="org.jqassistant.tooling.common"
+              and toolingParent.artifactId="parent"
+            SET
+              parent:Parent
+            RETURN
+              parent
+        ]]></cypher>
+    </concept>
+
+    <constraint id="jqassistant-tooling-maven:ParentProjectMustDefineUrl">
+        <requiresConcept refId="jqassistant-tooling-maven:ParentProject" />
+        <description>The project URL must be defined in the parent pom.xml of a tooling project.</description>
+        <cypher><![CDATA[
+            MATCH
+              (parent:Parent:Maven:Project)-[:HAS_MODEL]->(pom:Maven:Pom:Xml),
+              (pom)-[:HAS_ROOT_ELEMENT]->(root:Xml:Element)
+            WHERE NOT
+              (root)-[:HAS_ELEMENT]->(:Xml:Element{name:"url"})
+            RETURN
+              parent
+        ]]></cypher>
+    </constraint>
+
+    <constraint id="jqassistant-tooling-maven:ParentProjectMustDefineScmSection">
+        <requiresConcept refId="jqassistant-tooling-maven:ParentProject" />
+        <description>A SCM section having both connection and developerConnection set to "scm:git:https://github.com/jqassistant-tooling/_repository-name_" must be specified in the parent pom.xml of a tooling project.</description>
+        <cypher><![CDATA[
+            MATCH
+              (parent:Maven:Project:Parent)-[:HAS_MODEL]->(pom)
+            OPTIONAL MATCH
+              (pom)-[:HAS_SCM]->(scm)
+            WITH
+              parent, scm
+            WHERE
+              scm is null
+              or not (
+                scm.connection starts with "scm:git:https://github.com/jqassistant-tooling/"
+                and scm.developerConnection starts with "scm:git:https://github.com/jqassistant-tooling/"
+              )
+            RETURN
+              parent
+        ]]></cypher>
+    </constraint>
+
+    <constraint id="jqassistant-tooling-maven:ParentProjectMustDefineDeveloper">
+        <requiresConcept refId="jqassistant-tooling-maven:ParentProject" />
+        <description>At least one developer must be specified in the "developers" section of the parent pom.xml of a tooling project.</description>
+        <cypher><![CDATA[
+            MATCH
+              (parent:Maven:Project:Parent)-[:HAS_MODEL]->(pom)
+            WHERE NOT
+              (pom)-[:HAS_DEVELOPER]->()
+            RETURN
+              parent
+        ]]></cypher>
+    </constraint>
+
+    <constraint id="jqassistant-tooling-maven:MavenModulesMustUseParentGroupId">
+        <requiresConcept refId="jqassistant-tooling-maven:ParentProject" />
+        <description>All Maven projects must define the same groupId as the parent of the tooling project.</description>
+        <cypher><![CDATA[
+            MATCH
+              (parent:Maven:Project:Parent),
+              (module:Maven:Project:Directory)
+            WHERE NOT
+              (module:Parent or module.groupId = parent.groupId)
+            RETURN
+              module as InvalidModule, parent as Parent
+        ]]></cypher>
+    </constraint>
+
+</jqa:jqassistant-rules>
