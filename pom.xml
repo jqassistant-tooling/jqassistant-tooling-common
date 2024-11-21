@@ -22,6 +22,7 @@
         <jqassistant.version>2.6.0-SNAPSHOT</jqassistant.version>
         <!-- Sonar -->
         <sonar.organization>jqassistant-tooling</sonar.organization>
+        <sonar.projectKey>jqassistant-tooling_jqassistant-tooling-common</sonar.projectKey>
         <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
     </properties>
 
